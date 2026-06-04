@@ -20,13 +20,6 @@ export default function LoginPage() {
 
   return (
     <main className="p-8">
-        <nav>
-            <button className="bg-red-500 px-2 py-1 cursor-pointer text-white rounded-md "
-            onClick={() => supabase.auth.signOut()}
-            >
-            Logout
-        </button>
-        </nav>
       <h1 className="text-2xl font-bold mb-4">
         HR Login
       </h1>

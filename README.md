@@ -1,5 +1,6 @@
 # Mini AI HR Admin System
 
+password for supabase: sita_dev_supabase
 ## 1. Project Overview
 
 Mini AI HR is a full-stack HR administration application where an HR Admin can manage employee records using both a standard interface and an AI-powered chat prompt.
