@@ -50,6 +50,14 @@ export default function Home() {
           </Link>
         </>
       )}
+      <div>
+        <Link
+          href="/employees"
+          className="border px-4 py-2 rounded"
+        >
+          Go to Employees Page
+        </Link>
+      </div>
     </main>
   );
 
