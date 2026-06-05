@@ -13,10 +13,15 @@ function EmployeeCard({employee}: Props) {
         <h2 className="text-2xl font-semibold">{employee.full_name}</h2>
         <p>Email: {employee.email}</p>
         <p>Role: {employee.role}</p>
+        {employee.is_active ? (
+            <p className="text-green-500">Active</p>
+        ) : (
+            <p className="text-red-500">Inactive</p>
+        )}
         <Link
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mt-2 inline-block"
+            className=" bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded mt-2 inline-block"
             href={`/edit-employee/${employee.id}`}>
-            Edit
+            Manage Employee
         </Link>
 
     </div>
