@@ -31,12 +31,21 @@ export default function Home() {
       ) : (
         <>
           <p>Log in to manage and view employees.</p>
-          <Link
-            href="/login"
-            className="bg-blue-900 hover:bg-blue-800 text-white cursor-pointer px-4 py-2 rounded"
-          >
-            Login
-          </Link>
+          <div>
+            <Link
+              href="/login"
+              className="bg-blue-900 hover:bg-blue-800 text-white cursor-pointer px-4 py-2 rounded"
+            >
+              Login
+            </Link>          
+            <Link
+              href="/register"
+              className="ml-4 bg-gray-700 hover:bg-gray-600 text-white cursor-pointer px-4 py-2 rounded"
+            >
+              Register
+            </Link>  
+          </div>
+
         </>
       )}
     </main>

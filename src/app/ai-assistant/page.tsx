@@ -10,32 +10,6 @@ type AssistantResponse = {
     dbResult?: unknown;
 };
 
-const SUGGESTED_PROMPTS = [
-    {
-        label: "Create Engineer",
-        prompt: "Create employee named Ada Lovelace, email ada@minihr.com, role Software Engineer.",
-    },
-    {
-        label: "Create HR Generalist",
-        prompt: "Create employee named Jordan Miles, email jordan.miles@minihr.com, role HR Generalist.",
-    },
-    {
-        label: "View Active Team",
-        prompt: "Show all active employees.",
-    },
-    {
-        label: "Deactivate Employee",
-        prompt: "Deactivate employee Ada Lovelace.",
-    },
-    {
-        label: "Activate Employee",
-        prompt: "Activate employee Ada Lovelace.",
-    },
-    {
-        label: "Change Role",
-        prompt: "Change Ada Lovelace's role to Senior Software Engineer.",
-    },
-];
 
 function AiAssistantPage() {
     const [responseData, setResponseData] = useState<AssistantResponse | null>(null);
