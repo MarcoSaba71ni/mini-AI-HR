@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+:root {
+	--text-primary: #1e3a8a;
+}
+
+h1,
+h2 {
+	color: var(--text-primary);
+}

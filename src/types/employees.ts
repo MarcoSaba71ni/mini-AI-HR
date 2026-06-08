@@ -5,4 +5,9 @@ type EmployeeType = {
     role: string;
 }
 
-export default EmployeeType;
+type EmployeeTypeWithStatus = EmployeeType & {
+    is_active?: boolean;
+}
+
+export type { EmployeeType, EmployeeTypeWithStatus };
+export default EmployeeTypeWithStatus;

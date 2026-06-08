@@ -1,30 +1,37 @@
-import EmployeeType from "@/types/employees";
-import { supabase } from "@/lib/supabase";
+import type { EmployeeTypeWithStatus } from "@/types/employees";
 import Link from "next/link";
 
 type Props = {
-    employee: EmployeeType;
+    employee: EmployeeTypeWithStatus;
+    rowClassName?: string;
 }
 
-function EmployeeCard({employee}: Props) {
+function EmployeeCard({ employee, rowClassName }: Props) {
 
     return (
-    <div key={employee.id} className="border p-4 rounded">
-        <h2 className="text-2xl font-semibold">{employee.full_name}</h2>
-        <p>Email: {employee.email}</p>
-        <p>Role: {employee.role}</p>
-        {employee.is_active ? (
-            <p className="text-green-500">Active</p>
-        ) : (
-            <p className="text-red-500">Inactive</p>
-        )}
-        <Link
-            className=" bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded mt-2 inline-block"
-            href={`/edit-employee/${employee.id}`}>
-            Manage Employee
-        </Link>
-
-    </div>
+    <tr key={employee.id} className={`group ${rowClassName ?? ""}`}>
+        <td className="px-6 py-4">{employee.full_name}</td>
+        <td className="px-6 py-4">{employee.role}</td>
+        <td className="px-6 py-4">
+            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                employee.is_active === true
+                    ? "bg-green-100 text-green-800"
+                    : employee.is_active === false
+                    ? "bg-red-100 text-red-800"
+                    : "bg-gray-100 text-gray-600"
+            }`}>
+                {employee.is_active === true ? "Active" : employee.is_active === false ? "Inactive" : "N/A"}
+            </span>
+        </td>
+        <td className="px-6 py-4 text-right">
+            <Link
+                className="opacity-0 group-hover:opacity-100 transition-opacity bg-blue-900 hover:bg-blue-800 text-white text-xs font-semibold py-1.5 px-3 rounded"
+                href={`/edit-employee/${employee.id}`}
+            >
+                Edit
+            </Link>
+        </td>
+    </tr>
     )
 }
 

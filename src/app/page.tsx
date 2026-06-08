@@ -1,64 +1,44 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
-
-
+import { useAuth } from "@/app/providers/AuthProvider";
 
 export default function Home() {
-  const [email, setEmail] = useState<string | null>(null);
-  
-  useEffect(() => {
-    async function getUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        setEmail(user.email || "");
-      }
-    }
-    getUser();
-  }, []);
+  const { user, email, loading } = useAuth();
 
-
-  async function signOut() {
-    await supabase.auth.signOut();
-    setEmail(null);
-    window.location.href = "/login";
-  }
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <h1 className="text-4xl font-bold">
-        Mini AI HR
-      </h1>
-      {email ? (
-        <>
+    <main className="min-h-screen flex flex-col items-center pt-12 gap-4">
+      <div className="flex flex-col items-center">
+        <Image src="/images/meddle-logo.png" alt="Logo" width={256} height={180} className="object-cover" priority />
+        <h1 className="text-blue-900 text-2xl font-semibold text-center mb-4">
+          Your AI-Powered Employee Management Solution
+        </h1>
+      </div>
+      {loading ? (
+        <p>Checking session...</p>
+      ) : user ? (
+        <div>
           <p>Logged in as: {email}</p>
-          <button
-            className="border bg-red-500 hover:bg-red-600 text-white cursor-pointer px-4 py-2 rounded-md"
-            onClick={signOut}
-          >
-            Logout
-          </button>
-        </>
+          <div className="flex flex-col items-center mt-4">
+            <Link href="/dashboard" className="bg-[var(--text-primary)] hover:bg-blue-800 text-white cursor-pointer px-4 py-2 rounded">
+              Go to Dashboard
+            </Link>
+          </div>
+
+        </div>
+
+
       ) : (
         <>
-          <p>Not logged in</p>
+          <p>Log in to manage and view employees.</p>
           <Link
             href="/login"
-            className="border px-4 py-2 rounded"
+            className="bg-blue-900 hover:bg-blue-800 text-white cursor-pointer px-4 py-2 rounded"
           >
             Login
           </Link>
         </>
       )}
-      <div>
-        <Link
-          href="/employees"
-          className="border px-4 py-2 rounded"
-        >
-          Go to Employees Page
-        </Link>
-      </div>
     </main>
   );
-
 }
