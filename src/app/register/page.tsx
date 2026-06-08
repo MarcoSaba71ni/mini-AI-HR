@@ -49,7 +49,7 @@ export default function RegisterPage() {
         setTimeout(() => router.push("/login"), 2000);
       }
     } catch (err) {
-      setError("An unexpected error occurred");
+      setError("An unexpected error occurred: " + (err instanceof Error ? err.message : String(err)));
     } finally {
       setLoading(false);
     }
