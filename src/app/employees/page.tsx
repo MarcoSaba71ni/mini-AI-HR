@@ -13,6 +13,7 @@ function Employees() {
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
     const { user, loading: authLoading } = useAuth();
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
 
@@ -50,6 +51,16 @@ function Employees() {
         getEmployees();
     }, [authLoading, user, router]);
 
+    const filteredEmployees = employees.filter((employee) =>  {
+        const searchLower = searchTerm.toLowerCase();
+        return (
+            employee.full_name.toLowerCase().includes(searchLower) ||
+            employee.email.toLowerCase().includes(searchLower) ||
+            employee.role.toLowerCase().includes(searchLower)
+        );
+    }) // Add search/filter logic here if needed
+
+
 
   return (
     <main className="min-h-screen p-8">
@@ -83,26 +94,29 @@ function Employees() {
                 <h2 className="text-2xl font-semibold mb-4">Employee List</h2>
                 <input
                     type="text"
-                    placeholder="Search employees..."
+                    placeholder="Search for name, email, or role..."
                     className="bg-gray-100 p-2 rounded mb-4 w-full max-w-md"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <div className="border border-blue-900 rounded-lg overflow-hidden">
                     <table className="w-full">
                         <thead className="bg-blue-900 text-white">
                             <tr>
                                 <th className="text-left px-6 py-3">Name</th>
+                                <th className="text-left px-6 py-3">Email</th>
                                 <th className="text-left px-6 py-3">Role</th>
                                 <th className="text-left px-6 py-3">Status</th>
                                 <th className="text-right px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {employees.length === 0 ? (
+                            {filteredEmployees.length === 0 ? (
                                 <tr>
-                                    <td colSpan={4} className="px-6 py-4 text-center">No employees found.</td>
+                                    <td colSpan={5} className="px-6 py-4 text-center">No employees found.</td>
                                 </tr>
                             ) : (
-                                employees.map((employee, idx) => (
+                                filteredEmployees.map((employee, idx) => (
                                     <EmployeeCard
                                         key={employee.id}
                                         employee={employee}

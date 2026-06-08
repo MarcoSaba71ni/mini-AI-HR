@@ -45,7 +45,7 @@ function CreateEmployee() {
             <h1 className="text-3xl font-bold mb-2">Create Employee</h1>
             <p className="mb-6">Register a new employee in your directory.</p>
 
-            <div className="flex flex-col gap-4 items-center mb-8 bg-[var(--text-primary)] text-white p-4 rounded-lg">
+            <div className="flex flex-col gap-4 mx-48 items-center mb-8 bg-[var(--text-primary)] text-white p-4 rounded-lg">
                 <span>Alternatively, use our AI Assistant to register or manage an employees.</span>
                 <Link
                     className="flex justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded transition-colors"

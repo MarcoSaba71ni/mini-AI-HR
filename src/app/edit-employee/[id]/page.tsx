@@ -115,19 +115,31 @@ function EditEmployeePage() {
       <h1 className="text-3xl font-bold mb-2">Edit Employee</h1>
       <p className="mb-6">Update employee details and activation status.</p>
 
-      <div className="flex gap-4 mb-8">
-        <Link
-          className="border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-6 py-2 rounded transition-colors"
-          href="/employees"
-        >
-          Back to Employees
-        </Link>
-        <Link
-          className="border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-6 py-2 rounded transition-colors"
-          href="/dashboard"
-        >
-          Dashboard
-        </Link>
+      <div className="flex flex-col gap-4 mb-8">
+        <div className="flex flex-col gap-4 mx-48 items-center mb-8 bg-[var(--text-primary)] text-white p-4 rounded-lg">
+            <span>Alternatively, use our AI Assistant to register or manage an employees.</span>
+            <Link
+                className="flex justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded transition-colors"
+                href="/ai-assistant"
+            >
+                AI Assistant
+            </Link>
+        </div>
+        <div>
+          <Link
+            className="border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-6 py-2 rounded transition-colors"
+            href="/employees"
+          >
+            Back to Employees
+          </Link>
+          <Link
+            className="border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-6 py-2 rounded transition-colors"
+            href="/dashboard"
+          >
+            Dashboard
+          </Link>          
+        </div>
+
       </div>
 
       {loading && <p>Loading employee...</p>}

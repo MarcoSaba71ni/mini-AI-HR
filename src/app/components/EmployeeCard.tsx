@@ -11,6 +11,7 @@ function EmployeeCard({ employee, rowClassName }: Props) {
     return (
     <tr key={employee.id} className={`group ${rowClassName ?? ""}`}>
         <td className="px-6 py-4">{employee.full_name}</td>
+        <td className="px-6 py-4">{employee.email}</td>
         <td className="px-6 py-4">{employee.role}</td>
         <td className="px-6 py-4">
             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
